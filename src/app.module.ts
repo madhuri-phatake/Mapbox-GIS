@@ -16,7 +16,7 @@ import { MapboxModule } from './mapbox/mapbox.module';
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
       autoLoadEntities: true,
-      // synchronize: true,
+      synchronize: true,
       logging: true,
     }),
     MapboxModule,

@@ -1,26 +1,37 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
-import { Point } from 'geojson';
+import { Point ,Polygon} from 'geojson';
 
 @Entity()
 export class Mapbox {
-  @PrimaryGeneratedColumn('increment')
+  @PrimaryGeneratedColumn()
   pk_id: number;
 
-  @Column()
+  @Column({ type: 'double precision', name: 'd_lat' })
   lat: number;
 
-  @Column()
+  @Column({ type: 'double precision', name: 'd_long' })
   long: number;
 
   @Column()
-  City_Name:string;
+  City_Name: string;
 
-  @Index({ spatial: true })
+
+@Index({ spatial: true })
   @Column({
     type: 'geography',
-    spatialFeatureType: 'Point',
+    spatialFeatureType: 'Point', 
     srid: 4326,
     nullable: true,
   })
-  location: Point;
+  location:Point;
+
+
+  // @Index({ spatial: true })
+  // @Column({
+  //     type: 'geography',
+  //     spatialFeatureType: 'Polygon',
+  //     srid:4326,
+  //     nullable: true
+  // })
+  // polygon: Polygon;
 }
